@@ -29,4 +29,4 @@ RUN chown -R www-data:www-data /var/www/html/ && a2enmod rewrite
 
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt install -y nodejs
-RUN npm install --location=global npm@9.6.0
+RUN npm install --location=global npm@10.1.0

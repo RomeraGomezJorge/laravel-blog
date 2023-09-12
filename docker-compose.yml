@@ -33,6 +33,7 @@ services:
     image: 'laravel_roadmap_beginner_challenge'
     ports:
       - ${DOCKER_APACHE_PORT_HTTP}:80
+      - ${DOCKER_VITE_PORT}:5173
     volumes:
       - ./app:/var/www/html
 
