@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+
+class SetLocale
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next)
+    {
+        $selectedLanguage = $this->getSelectedLanguage($request);
+        info('SetLocale');
+
+        if ($selectedLanguage) {
+            app()->setLocale($selectedLanguage);
+        }
+
+        return $next($request);
+    }
+
+    private function getSelectedLanguage(Request $request)
+    {
+        $languages       = array_keys(config('app.languages'));
+        $changeLanguage  = $request->input('change_language');
+        $sessionLanguage = session('language');
+
+        if ($changeLanguage) {
+            session()->put('language', $changeLanguage);
+            return $changeLanguage;
+        } elseif ( in_array($sessionLanguage, $languages)) {
+            return $sessionLanguage;
+        }
+
+        return null;
+    }
+}
