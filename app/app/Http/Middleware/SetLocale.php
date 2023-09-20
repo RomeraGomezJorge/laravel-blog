@@ -15,7 +15,6 @@ class SetLocale
     public function handle(Request $request, Closure $next)
     {
         $selectedLanguage = $this->getSelectedLanguage($request);
-        info('SetLocale');
 
         if ($selectedLanguage) {
             app()->setLocale($selectedLanguage);

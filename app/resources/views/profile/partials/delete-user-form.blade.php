@@ -60,14 +60,17 @@
             </div>
 
             <div class="mt-6 flex justify-end">
-                <x-button
-                    type="button"
-                    variant="secondary"
+{{--                <x-button--}}
+{{--                    type="button"--}}
+{{--                    variant="secondary"--}}
+{{--                    x-on:click="$dispatch('close')"--}}
+{{--                >--}}
+{{--                    <x-icons.cancel/>--}}
+{{--                    {{ __('Cancel') }}--}}
+{{--                </x-button>--}}
+                <x-buttons.cancel
                     x-on:click="$dispatch('close')"
-                >
-                    <x-icons.cancel/>
-                    {{ __('Cancel') }}
-                </x-button>
+                />
 
                 <x-button
                     variant="danger"
