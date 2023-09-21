@@ -19,7 +19,7 @@ class TagController extends Controller
         $orderBy       = $request->input('order_by', 'id');
         $sortDirection = $request->input('direction', 'asc');
 
-        $tags =  DB::table('tags')
+        $tags =  Tag::sortable()
             ->select(['id','name'])
             ->orderBy($orderBy,$sortDirection)
             ->when($request->filled('name'),function ($q) use ($request){
@@ -77,6 +77,6 @@ class TagController extends Controller
     {
         $tag->delete();
 
-        return response()->redirectToRoute('tag.index')->with('message', trans('main.delete_success'));
+        return response()->redirectToRoute('tags.index')->with('message', trans('main.delete_success'));
     }
 }
