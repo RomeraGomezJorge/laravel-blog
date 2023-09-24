@@ -1,5 +1,5 @@
 <button
-    {{ $attributes->merge(['class' => "inline-flex items-center justify-center w-8 h-8 mr-2 text-sm font-semibold text-red-900 bg-red-200 rounded-full dark:bg-gray-700 dark:text-gray-300"]) }}
+    {{ $attributes->merge(['class' => "inline-flex items-center justify-center w-8 h-8 mr-2 text-sm font-semibold text-red-900 bg-red-200 rounded-full dark:bg-red-700 dark:text-red-300"]) }}
 >
     <svg aria-hidden="true"
          class="w-3.5 h-3.5"

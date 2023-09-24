@@ -15,7 +15,7 @@
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
     >
-        <x-icons.delete/>
+        <x-icons.delete class="w-4 h-4 mr-2 -ml-1 text-white"/>
         {{ __('Delete Account') }}
     </x-button>
     </div>
@@ -68,7 +68,7 @@
                     variant="danger"
                     class="ml-3"
                 >
-                    <x-icons.delete/>
+                    <x-icons.delete class="w-4 h-4 mr-2 -ml-1 text-white"/>
                     {{ __('Delete Account') }}
                 </x-button>
             </div>

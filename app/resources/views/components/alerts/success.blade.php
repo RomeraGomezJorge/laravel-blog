@@ -8,7 +8,7 @@
         x-transition
         x-init="setTimeout(() => show = false, 3000)"
     >
-        <x-icons.info/>
+        <x-icons.info class="flex-shrink-0 w-4 h-4" />
         <span class="sr-only">Info</span>
         <div class="ml-3 text-sm font-medium">
             {{ $message }}

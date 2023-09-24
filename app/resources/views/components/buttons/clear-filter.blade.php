@@ -5,7 +5,7 @@
     variant="alternative"
     href="{{$href}}"
 >
-    <svg class="w-4 h-4 mr-2 -ml-1 dark:text-white"
+    <svg class="w-4 h-4 mr-2 -ml-1"
          aria-hidden="true"
          xmlns="http://www.w3.org/2000/svg"
          fill="currentColor"
