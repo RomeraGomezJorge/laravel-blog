@@ -1,7 +1,5 @@
 <section id="password-update">
-    @if (session('status') === 'password-updated')
-        <x-alerts.success>{{__("Your password has been updated successfully.")}}</x-alerts.success>
-    @endif
+    <x-alerts.success/>
     <header>
         <h2 class="text-lg font-medium">
             {{ __('Update Password') }}

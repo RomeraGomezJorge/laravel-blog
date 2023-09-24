@@ -1,7 +1,5 @@
 <section>
-    @if (session('status') === 'profile-updated')
-        <x-alerts.success>{{__("Your profile data has been updated successfully.")}}</x-alerts.success>
-    @endif
+    <x-alerts.success/>
     <header>
         <h2 class="text-lg font-medium">
             {{ __('Profile Information') }}
