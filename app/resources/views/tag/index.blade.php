@@ -4,7 +4,7 @@
             <h2 class="text-xl font-semibold leading-tight">
                 {{ __('Tag') }}
             </h2>
-            <x-buttons.create/>
+            <x-buttons.create :href="route('tags.create')"/>
         </div>
     </x-slot>
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
