@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoretagRequest;
-use App\Http\Requests\UpdatetagRequest;
+use App\Http\Requests\Tag\StoreTagRequest;
+use App\Http\Requests\Tag\UpdatetagRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
 {
@@ -19,10 +18,10 @@ class TagController extends Controller
         $orderBy       = $request->input('order_by', 'id');
         $sortDirection = $request->input('direction', 'asc');
 
-        $tags =  Tag::sortable()
-            ->select(['id','name'])
-            ->orderBy($orderBy,$sortDirection)
-            ->when($request->filled('name'),function ($q) use ($request){
+        $tags = Tag::sortable()
+            ->select(['id', 'name'])
+            ->orderBy($orderBy, $sortDirection)
+            ->when($request->filled('name'), function ($q) use ($request) {
                 return $q->where('name', 'like', '%' . $request->input('name') . '%');
             })
             ->paginate(10);
@@ -41,9 +40,10 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoretagRequest $request)
+    public function store(StoreTagRequest $request)
     {
-        //
+        Tag::create($request->validated());
+        return redirect()->route('tags.index')->with('success', __('Successfully created'));
     }
 
     /**

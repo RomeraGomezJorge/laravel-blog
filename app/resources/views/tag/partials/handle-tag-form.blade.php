@@ -1,10 +1,12 @@
+@props(['method','url_action'])
+
 <form
-    method="post"
-    action="{{ route('tags.create') }}"
+    method="{{$method}}"
+    action="{{ $url_action }}"
     class="mt-6 space-y-6 max-w-xl"
 >
     @csrf
-    @method('post')
+    @method($method)
 
     <div class="space-y-2">
         <x-form.label

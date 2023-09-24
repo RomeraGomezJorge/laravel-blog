@@ -8,6 +8,7 @@
         </div>
     </x-slot>
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
+        <x-alerts.success/>
         <form method="get" class="flex items-center">
             <label for="simple-search" class="sr-only">{{ __('Search')}}</label>
             <div class="relative w-full">
