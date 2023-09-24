@@ -50,13 +50,13 @@
                             {{$tag->name}}
                         </td>
                         <td class="px-6 py-4">
-                            <x-icons.list-edit/>
-                            <x-buttons.list-delete
+                            <x-buttons.list.edit :href="route('tags.edit',$tag->id)"/>
+                            <x-buttons.list.delete
                                 data-modal-toggle="confirmDelete{{ $tag->id }}"
                             />
                             <x-modal-delete-confirmation
                                 :id="$tag->id"
-                                :formAction="route('tags.destroy', ['tag' => $tag->id])"
+                                :formAction="route('tags.destroy', $tag->id)"
                             />
                         </td>
                     </tr>

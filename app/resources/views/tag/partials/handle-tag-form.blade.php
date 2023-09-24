@@ -1,7 +1,7 @@
 @props(['method','url_action'])
 
 <form
-    method="{{$method}}"
+    method="post"
     action="{{ $url_action }}"
     class="mt-6 space-y-6 max-w-xl"
 >
@@ -20,7 +20,7 @@
             name="name"
             type="text"
             class="block w-full"
-            :value="old('name')"
+            :value="$tag->name ?? old('name')"
             required
             autofocus
             autocomplete="name"
