@@ -7,6 +7,7 @@ use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class CategoryController extends Controller
 {
@@ -29,15 +30,16 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreCategoryRequest $request): RedirectResponse
     {
-        //
+        Category::create($request->validated());
+        return redirect()->route('categories.index')->with('success', __('Successfully created'));
     }
 
     /**
