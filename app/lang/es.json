@@ -73,5 +73,11 @@
     "Your email address is unverified.": "Su dirección de correo electrónico no está verificada.",
     "Your profile data has been updated successfully.": " Los datos de tu perfil se han actualizado correctamente.",
     "Your password has been updated successfully.": "Su contraseña se ha actualizado correctamente.",
-    "Don’t have an account?": "¿No tienes una cuenta?"
+    "Don’t have an account?": "¿No tienes una cuenta?",
+    "Are you sure you want to delete this record?": "¿Estás seguro de que quieres eliminar este registro?",
+    "Yes, delete": "Sí, eliminar",
+    "Tag": "Etiqueta",
+    "Tags": "Etiquetas",
+    "Actions": "Acciones",
+    "Edit": "Editar"
 }
