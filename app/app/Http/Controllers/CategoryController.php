@@ -28,7 +28,7 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         return view('category.create');
     }
@@ -39,7 +39,7 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request): RedirectResponse
     {
         Category::create($request->validated());
-        return redirect()->route('categories.index')->with('success', __('Successfully created'));
+        return $this->redirect_success_store('categories.index');
     }
 
     /**
@@ -53,18 +53,18 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category): RedirectResponse
     {
         $category->update($request->validated());
-        return redirect()->route('categories.index')->with('success', __('Successfully updated'));
+        return $this->redirect_success_update('categories.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category): RedirectResponse
     {
         $category->delete();
-        return redirect()->route('categories.index')->with('success', __('Successfully deleted'));
+        return $this->redirect_success_delete('categories.index');
     }
 }

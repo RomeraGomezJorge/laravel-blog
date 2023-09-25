@@ -41,7 +41,7 @@ class TagController extends Controller
     public function store(StoreTagRequest $request): RedirectResponse
     {
         Tag::create($request->validated());
-        return redirect()->route('tags.index')->with('success', __('Successfully created'));
+        return  $this->redirect_success_store('tags.index');
     }
 
 
@@ -59,7 +59,7 @@ class TagController extends Controller
     public function update(UpdateTagRequest $request, Tag $tag): RedirectResponse
     {
         $tag->update($request->validated());
-        return redirect()->route('tags.index')->with('success', __('Successfully updated'));
+        return $this->redirect_success_update('tags.index');
     }
 
     /**
@@ -68,7 +68,6 @@ class TagController extends Controller
     public function destroy(Tag $tag): RedirectResponse
     {
         $tag->delete();
-
-        return response()->redirectToRoute('tags.index')->with('success', __('Successfully deleted'));
+        return $this->redirect_success_delete('tags.index');
     }
 }
