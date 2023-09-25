@@ -23,8 +23,16 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:50', Rule::unique('categories')],
-            'display_order' => ['required','numeric',Rule::unique('categories')]
+            'name' => [
+                'required',
+                'max:50',
+                Rule::unique('categories')
+            ],
+            'display_order' => [
+                'required',
+                'numeric',
+                Rule::unique('categories')
+            ]
         ];
     }
 }
