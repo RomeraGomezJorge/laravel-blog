@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Tag\StoreTagRequest;
-use App\Http\Requests\Tag\UpdatetagRequest;
+use App\Http\Requests\Tag\UpdateTagRequest;
 use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -56,7 +56,7 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatetagRequest $request, Tag $tag): RedirectResponse
+    public function update(UpdateTagRequest $request, Tag $tag): RedirectResponse
     {
         $tag->update($request->validated());
         return redirect()->route('tags.index')->with('success', __('Successfully updated'));
