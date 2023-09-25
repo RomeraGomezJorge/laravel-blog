@@ -24,6 +24,16 @@
         </x-slot>
     </x-sidebar.link>
 
+    <x-sidebar.link
+        title="{{__('Categories')}}"
+        href="{{ route('categories.index') }}"
+        :isActive="request()->routeIs('categories.index')"
+    >
+        <x-slot name="icon" class="align-middle">
+            <x-icons.category class="flex-shrink-0 w-4 h-4" aria-hidden="true" />
+        </x-slot>
+    </x-sidebar.link>
+
     <x-sidebar.dropdown
         title="Buttons"
         :active="Str::startsWith(request()->route()->uri(), 'buttons')"

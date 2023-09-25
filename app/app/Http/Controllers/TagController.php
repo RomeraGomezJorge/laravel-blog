@@ -16,12 +16,9 @@ class TagController extends Controller
      */
     public function index(Request $request): View
     {
-        $orderBy       = $request->input('order_by', 'id');
-        $sortDirection = $request->input('direction', 'asc');
 
         $tags = Tag::sortable()
             ->select(['id', 'name'])
-            ->orderBy($orderBy, $sortDirection)
             ->when($request->filled('name'), function ($q) use ($request) {
                 return $q->where('name', 'like', '%' . $request->input('name') . '%');
             })
