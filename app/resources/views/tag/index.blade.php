@@ -22,7 +22,7 @@
                 />
             </div>
             <x-buttons.search/>
-            <x-buttons.clear-filter :href="route('tags.index')" />
+            <x-buttons.clear-filter :href="route('tags.index')"/>
         </form>
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
@@ -43,24 +43,26 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($tags as $tag)
-                    <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
+                    @forelse($tags as $tag)
+                        <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
 
-                        <td class="px-6 py-4">
-                            {{$tag->name}}
-                        </td>
-                        <td class="px-6 py-4">
-                            <x-buttons.list.edit :href="route('tags.edit',$tag->id)"/>
-                            <x-buttons.list.delete
-                                data-modal-toggle="confirmDelete{{ $tag->id }}"
-                            />
-                            <x-modal-delete-confirmation
-                                :id="$tag->id"
-                                :formAction="route('tags.destroy', $tag->id)"
-                            />
-                        </td>
-                    </tr>
-                @endforeach
+                            <td class="px-6 py-4">
+                                {{$tag->name}}
+                            </td>
+                            <td class="px-6 py-4">
+                                <x-buttons.list.edit :href="route('tags.edit',$tag->id)"/>
+                                <x-buttons.list.delete
+                                    data-modal-toggle="confirmDelete{{ $tag->id }}"
+                                />
+                                <x-modal-delete-confirmation
+                                    :id="$tag->id"
+                                    :formAction="route('tags.destroy', $tag->id)"
+                                />
+                            </td>
+                        </tr>
+                    @empty
+                        <x-no-entries-found :colspan="2"/>
+                    @endforelse
                 </tbody>
             </table>
             <div class="ml-auto px-10 py-4">

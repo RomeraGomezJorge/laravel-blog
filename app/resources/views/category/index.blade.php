@@ -47,26 +47,28 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($categories as $category)
-                    <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
-                        <td class="px-6 py-4">
-                            {{$category->name}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$category->display_order}}
-                        </td>
-                        <td class="px-6 py-4">
-                            <x-buttons.list.edit :href="route('categories.edit',$category->id)"/>
-                            <x-buttons.list.delete
-                                data-modal-toggle="confirmDelete{{ $category->id }}"
-                            />
-                            <x-modal-delete-confirmation
-                                :id="$category->id"
-                                :formAction="route('categories.destroy', $category->id)"
-                            />
-                        </td>
-                    </tr>
-                @endforeach
+                    @forelse($categories as $category)
+                        <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
+                            <td class="px-6 py-4">
+                                {{$category->name}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$category->display_order}}
+                            </td>
+                            <td class="px-6 py-4">
+                                <x-buttons.list.edit :href="route('categories.edit',$category->id)"/>
+                                <x-buttons.list.delete
+                                    data-modal-toggle="confirmDelete{{ $category->id }}"
+                                />
+                                <x-modal-delete-confirmation
+                                    :id="$category->id"
+                                    :formAction="route('categories.destroy', $category->id)"
+                                />
+                            </td>
+                        </tr>
+                    @empty
+                        <x-no-entries-found :colspan="3"/>
+                    @endforelse
                 </tbody>
             </table>
             <div class="ml-auto px-10 py-4">
