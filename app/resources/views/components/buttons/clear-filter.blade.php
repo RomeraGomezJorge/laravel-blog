@@ -1,7 +1,7 @@
 @props(['href'])
 <x-button
+    {{ $attributes->merge(['class'=> 'px-5 py-2.5']) }}
     type="submit"
-    class="p-2.5 ml-2 mb-0"
     variant="alternative"
     href="{{$href}}"
 >

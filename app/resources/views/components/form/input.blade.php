@@ -2,6 +2,7 @@
     'disabled' => false,
     'withicon' => false,
     'hasErrors' => false,
+    'placeholder' => ''
 ])
 
 @php
@@ -10,6 +11,7 @@
 @endphp
 
 <input
+    placeholder="{{$placeholder}}"
     {{ $disabled ? 'disabled' : '' }}
     {!! $attributes->merge([
             'class' => $withiconClasses .$errorClasses . ' py-2 border-gray-400
