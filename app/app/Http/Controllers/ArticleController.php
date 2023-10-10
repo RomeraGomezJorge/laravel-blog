@@ -96,9 +96,14 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Article $article)
+    public function destroy(Article $article): RedirectResponse
     {
-        //
+        DB::transaction(function() use ( $article) {
+            $article->tags()->detach();
+            $article->delete();
+        });
+
+        return $this->redirect_success_delete('articles.index');
     }
 
     /**
