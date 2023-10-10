@@ -17,7 +17,7 @@
                     name="title"
                     type="text"
                     value="{{ Request::get('title') }}"
-                    class="mr-2 mb-2 "
+                    class="mr-2 mb-2"
                     placeholder="{{__('Filter by title')}}"
                 />
             </div>

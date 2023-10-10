@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreArticleRequest;
-use App\Http\Requests\UpdateArticleRequest;
+use App\Http\Requests\Article\StoreArticleRequest;
+use App\Http\Requests\Article\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -47,20 +49,22 @@ class ArticleController extends Controller
      */
     public function create(Request $request)
     {
-        $articles = Article::sortable()
-            ->select(['id', 'title',])
-            ->with(['category:name','tags:name'])
-            ->paginate(10);
-
-        return view('article.index', compact('articles'));
+        $data = $this->getRelatedData();
+        return view('article.create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
+     * @throws \Throwable
      */
-    public function store(StoreArticleRequest $request)
+    public function store(StoreArticleRequest $request): RedirectResponse
     {
-        //
+        DB::transaction(function() use ( $request) {
+            $article = Article::create($request->validated());
+            $article->tags()->attach($request->tags);
+        });
+
+        return $this->redirect_success_store('articles.index');
     }
 
     /**
