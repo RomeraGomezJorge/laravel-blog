@@ -35,9 +35,9 @@ class StoreArticleRequest extends FormRequest
                 'required',
                 'exists:categories,id',
             ],
-            'tags'   => ['array'],
             'tags' =>[
-                'exists:tags,id'
+                'array',
+                'exists:tags,id',
             ]
 
         ];

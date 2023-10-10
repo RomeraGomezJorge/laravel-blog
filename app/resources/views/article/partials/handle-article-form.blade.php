@@ -46,17 +46,19 @@
         >
             @forelse($categories as $category)
                 <option
-                    @selected( isset($article)? $article->category->id == $category->id: old('category_id') == $category->id )
+                    @selected( isset($article)
+                        ? $article->category->id == $category->id
+                        : old('category_id') == $category->id )
                     value="{{$category->id}}"
                 >
                     {{$category->name}}
                 </option>
             @empty
                 <option disabled>{{__('No entries found')}}</option>
-                @endforelse
-                </x-form.select>
+            @endforelse
+        </x-form.labeled-select>
 
-                <x-form.error :messages="$errors->get('category_id')"/>
+        <x-form.error :messages="$errors->get('category_id')"/>
     </div>
 
     <div class="space-y-2">
@@ -71,16 +73,18 @@
             @forelse($tags as $tag)
                 <option
                     value="{{$tag->id}}"
-                    @selected( in_array($tag->id, old('tags', [])) )
+                    @selected( (isset($article))
+                                ? $article->tags->contains($tag->id)
+                                : in_array($tag->id, old('tags', [])) )
                 >
                     {{$tag->name}}
                 </option>
             @empty
                 <option disabled>{{__('No entries found')}}</option>
-                @endforelse
-                </x-form.select>
+            @endforelse
+        </x-form.labeled-select>
 
-                <x-form.error :messages="$errors->get('tags')"/>
+        <x-form.error :messages="$errors->get('tags')"/>
     </div>
 
     <div class="flex items-center justify-end gap-4">

@@ -7,6 +7,7 @@ use App\Http\Requests\Article\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -47,7 +48,7 @@ class ArticleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create(): View
     {
         $data = $this->getRelatedData();
         return view('article.create', $data);
@@ -68,27 +69,28 @@ class ArticleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Article $article)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Article $article)
+    public function edit(Article $article): View
     {
-        //
+        $data = $this->getRelatedData();
+        $data['article'] = $article->load('category','tags');
+
+        return view('article.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateArticleRequest $request, Article $article)
+    public function update(UpdateArticleRequest $request, Article $article): RedirectResponse
     {
-        //
+        DB::transaction(function() use ( $request, $article) {
+            $article->update($request->validated());
+            $article->tags()->sync($request->tags);
+        });
+
+        return $this->redirect_success_update('articles.index');
+
     }
 
     /**

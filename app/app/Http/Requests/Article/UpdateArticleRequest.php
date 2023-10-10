@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Article;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateArticleRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateArticleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,24 @@ class UpdateArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'       => [
+                'required',
+                'max:50',
+                Rule::unique('articles')->ignore($this->article),
+            ],
+            'description' => [
+                'required',
+            ],
+            'category_id' => [
+                'required',
+                'exists:categories,id',
+            ],
+            'tags' =>[
+                'array',
+                'exists:tags,id',
+            ]
+
         ];
+
     }
 }
