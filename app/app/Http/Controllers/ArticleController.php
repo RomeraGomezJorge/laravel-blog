@@ -18,7 +18,7 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $articles = Article::sortable()
             ->select([
@@ -56,7 +56,6 @@ class ArticleController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @throws \Throwable
      */
     public function store(StoreArticleRequest $request): RedirectResponse
     {
