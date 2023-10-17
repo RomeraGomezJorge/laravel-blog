@@ -62,6 +62,18 @@ class ArticleController extends Controller
         DB::transaction(function() use ( $request) {
             $article = Article::create($request->validated());
             $article->tags()->attach($request->tags);
+
+            if ($request->hasFile('images')) {
+
+                foreach($request->file('images') as $image){
+                    $imageName = $image->getClientOriginalName();
+                    $image->storeAs('article/' . $article->id, $imageName);
+                    $images[] = ['url' => $imageName];
+                }
+
+                $article->images()->createMany($images);
+            }
+
         });
 
         return $this->redirect_success_store('articles.index');

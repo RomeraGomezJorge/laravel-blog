@@ -104,7 +104,7 @@
                         </td>
                         <td class="px-6 py-4">
                             @forelse($article->tags as $tag)
-                                {{$tag->name}}
+                                {{$tag->name}}</br>
                             @empty
                                 {{__('No tag found')}}
                             @endforelse
