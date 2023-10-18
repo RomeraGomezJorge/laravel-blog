@@ -66,9 +66,8 @@ class ArticleController extends Controller
             if ($request->hasFile('images')) {
 
                 foreach($request->file('images') as $image){
-                    $imageName = $image->getClientOriginalName();
-                    $image->storeAs('article/' . $article->id, $imageName);
-                    $images[] = ['url' => $imageName];
+                    $image->storeAs('article/' . $article->id, 'public');
+                    $images[] = ['url' => $image->hashName()];
                 }
 
                 $article->images()->createMany($images);
