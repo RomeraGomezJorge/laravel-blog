@@ -48,7 +48,7 @@
             @forelse($categories as $category)
                 <option
                     @selected( isset($article)
-                        ? $article->category->id == $category->id
+                        ? $article->category_id == $category->id
                         : old('category_id') == $category->id )
                     value="{{$category->id}}"
                 >
@@ -121,6 +121,7 @@
     <x-button
         class="add-more-images"
         variant="outline"
+        type="button"
     >
         <x-icons.plus class="w-4 h-4 mr-2 -ml-1"/>
         Add more images

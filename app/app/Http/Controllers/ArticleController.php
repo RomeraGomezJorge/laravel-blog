@@ -85,7 +85,7 @@ class ArticleController extends Controller
     public function edit(Article $article): View
     {
         $data = $this->getRelatedData();
-        $data['article'] = $article->load('category','tags');
+        $data['article'] = $article;
 
         return view('article.edit', $data);
     }
