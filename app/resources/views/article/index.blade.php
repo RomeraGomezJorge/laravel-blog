@@ -103,11 +103,7 @@
                             {{$article->category_name}}
                         </td>
                         <td class="px-6 py-4">
-                            @forelse($article->tags as $tag)
-                                {{$tag->name}}</br>
-                            @empty
-                                {{__('No tag found')}}
-                            @endforelse
+                            {{$article->tags->pluck('name')->implode(', ') }}
                         </td>
 
                         <td class="px-6 py-4">
