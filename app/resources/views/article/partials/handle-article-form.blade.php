@@ -127,6 +127,32 @@
         Add more images
     </x-button>
 
+
+    @if( isset($article->images)  && $article->images->isNotEmpty()  )
+
+        <div class="space-y-2">
+            <x-form.label>Uploaded Images</x-form.label>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                @foreach($article->images as $image)
+                <div class="text-center">
+                    <img class="h-auto max-w-full rounded-lg" src="{{asset("storage/article/".$article->id."/".$image->url)}}" alt="">
+
+                    <x-button
+                        variant="outline-danger"
+                        onclick="return confirm('Are you sure?')"
+                        href="{{ route('articles.remove.image',$image->id) }}"
+                        class="mt-2"
+                    >
+                        <x-icons.trash class="w-4 h-4 mr-2"/>
+                        Remove
+                    </x-button>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     <div class="flex items-center justify-end gap-4">
         <x-buttons.cancel-form :href="route('articles.index')"/>
         <x-buttons.save/>

@@ -44,6 +44,9 @@
         case 'outline':
             $variantClasses = 'text-blue-500 hover:text-white border border-blue-500 hover:bg-blue-500 focus:ring-1 focus:ring-blue-300 font-medium rounded-lg text-sm text-center mr-2 mb-2 dark:border-blue-500 dark:text-white dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800';
         break;
+        case 'outline-danger':
+            $variantClasses = 'text-red-500 hover:text-white border border-red-500 hover:bg-red-500 focus:ring-1 focus:ring-red-300 font-medium rounded-lg text-sm text-center mr-2 mb-2 dark:border-red-500 dark:text-white dark:hover:text-white dark:hover:bg-red-500 dark:focus:ring-red-800';
+        break;
         default:
             $variantClasses = 'bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-500';
     }

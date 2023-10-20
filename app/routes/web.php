@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth','prefix'=>'backoffice'], function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('tags', TagController::class)->except(['show']);
     Route::resource('categories', CategoryController::class)->except(['show']);
+    Route::get('/articles/{image}/remove-image', [ArticleController::class,'removeImage'])->name('articles.remove.image');
     Route::resource('articles', ArticleController::class)->except(['show']);
 });
 

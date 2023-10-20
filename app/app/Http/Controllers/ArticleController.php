@@ -6,12 +6,14 @@ use App\Http\Requests\Article\StoreArticleRequest;
 use App\Http\Requests\Article\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -26,20 +28,20 @@ class ArticleController extends Controller
                 'articles.title',
                 'categories.name as category_name',
             ])
-            ->join('categories','articles.category_id','=','categories.id')
+            ->join('categories', 'articles.category_id', '=', 'categories.id')
             ->with(['tags:name'])
             ->when($request->filled('title'), function (Builder $q) use ($request) {
-                 $q->where('articles.title', 'like', '%' . $request->input('title') . '%');
+                $q->where('articles.title', 'like', '%' . $request->input('title') . '%');
             })
-            ->when($request->filled('category_id'), function (Builder $q) use ($request){
-                $q->whereRelation('category', 'id',  $request->input('category_id'));
+            ->when($request->filled('category_id'), function (Builder $q) use ($request) {
+                $q->whereRelation('category', 'id', $request->input('category_id'));
             })
-            ->when($request->filled('tag_id'), function (Builder $q) use ($request){
-                $q->whereRelation('tags','tag_id',$request->input('tag_id'));
+            ->when($request->filled('tag_id'), function (Builder $q) use ($request) {
+                $q->whereRelation('tags', 'tag_id', $request->input('tag_id'));
             })
             ->paginate(10);
 
-        $data = $this->getRelatedData();
+        $data             = $this->getRelatedData();
         $data['articles'] = $articles;
 
         return view('article.index', $data);
@@ -59,14 +61,14 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request): RedirectResponse
     {
-        DB::transaction(function() use ( $request) {
+        DB::transaction(function () use ($request) {
             $article = Article::create($request->validated());
             $article->tags()->attach($request->tags);
 
             if ($request->hasFile('images')) {
 
-                foreach($request->file('images') as $image){
-                    $image->storeAs('article/' . $article->id, 'public');
+                foreach ($request->file('images') as $image) {
+                    $image->store('article/' . $article->id, 'public');
                     $images[] = ['url' => $image->hashName()];
                 }
 
@@ -83,7 +85,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article): View
     {
-        $data = $this->getRelatedData();
+        $data            = $this->getRelatedData();
         $data['article'] = $article;
 
         return view('article.edit', $data);
@@ -94,7 +96,7 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article): RedirectResponse
     {
-        DB::transaction(function() use ( $request, $article) {
+        DB::transaction(function () use ($request, $article) {
             $article->update($request->validated());
             $article->tags()->sync($request->tags);
         });
@@ -108,12 +110,21 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article): RedirectResponse
     {
-        DB::transaction(function() use ( $article) {
+        DB::transaction(function () use ($article) {
             $article->tags()->detach();
             $article->delete();
         });
 
         return $this->redirect_success_delete('articles.index');
+    }
+
+    public function removeImage(Image $image): RedirectResponse
+    {
+        Storage::disk('public')->delete('article/' . $image->article_id . '/' . $image->url);
+        $article = $image->article;
+        $image->delete();
+
+        return redirect()->route('articles.edit', ['article' => $article])->with('success', __('Successfully deleted'));
     }
 
     /**
