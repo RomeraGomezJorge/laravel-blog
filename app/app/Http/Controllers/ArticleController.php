@@ -64,17 +64,10 @@ class ArticleController extends Controller
         DB::transaction(function () use ($request) {
             $article = Article::create($request->validated());
             $article->tags()->attach($request->tags);
-
             if ($request->hasFile('images')) {
-
-                foreach ($request->file('images') as $image) {
-                    $image->store('article/' . $article->id, 'public');
-                    $images[] = ['url' => $image->hashName()];
-                }
-
+                $images = $this->uploadImages($request, $article);
                 $article->images()->createMany($images);
             }
-
         });
 
         return $this->redirect_success_store('articles.index');
@@ -99,10 +92,13 @@ class ArticleController extends Controller
         DB::transaction(function () use ($request, $article) {
             $article->update($request->validated());
             $article->tags()->sync($request->tags);
+            if ($request->hasFile('images')) {
+                $images = $this->uploadImages($request, $article);
+                $article->images()->createMany($images);
+            }
         });
 
         return $this->redirect_success_update('articles.index');
-
     }
 
     /**
@@ -118,13 +114,17 @@ class ArticleController extends Controller
         return $this->redirect_success_delete('articles.index');
     }
 
+    /**
+     * Remove the specified image from storage.
+     */
     public function removeImage(Image $image): RedirectResponse
     {
         Storage::disk('public')->delete('article/' . $image->article_id . '/' . $image->url);
         $article = $image->article;
         $image->delete();
 
-        return redirect()->route('articles.edit', ['article' => $article])->with('success', __('Successfully deleted'));
+        return redirect()->route('articles.edit', ['article' => $article])
+            ->with('success', __('Successfully deleted'));
     }
 
     /**
@@ -136,6 +136,19 @@ class ArticleController extends Controller
             'categories' => Category::all(['id', 'name'])->sortBy('name'),
             'tags'       => Tag::all(['id', 'name'])->sortByDesc('name'),
         ];
+    }
+
+
+    private function uploadImages(Request $request, Article $article): array
+    {
+        $images = [];
+
+        foreach ($request->file('images') as $image) {
+            $image->store('article/' . $article->id, 'public');
+            $images[] = ['url' => $image->hashName()];
+        }
+
+        return $images;
     }
 
 }
