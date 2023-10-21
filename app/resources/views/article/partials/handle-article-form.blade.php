@@ -124,14 +124,14 @@
         type="button"
     >
         <x-icons.plus class="w-4 h-4 mr-2 -ml-1"/>
-        Add more images
+        {{__('Add more images')}}
     </x-button>
 
 
     @if( isset($article->images)  && $article->images->isNotEmpty()  )
 
         <div class="space-y-2">
-            <x-form.label>Uploaded Images</x-form.label>
+            <x-form.label>{{__('Uploaded images')}}</x-form.label>
 
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                 @foreach($article->images as $image)
@@ -145,7 +145,7 @@
                         class="mt-2"
                     >
                         <x-icons.trash class="w-4 h-4 mr-2"/>
-                        Remove
+                        {{__('Remove image')}}
                     </x-button>
                 </div>
                 @endforeach

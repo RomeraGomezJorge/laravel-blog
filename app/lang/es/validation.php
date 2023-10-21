@@ -213,5 +213,9 @@ return [
         'updated_at'               => 'actualizado el',
         'username'                 => 'usuario',
         'year'                     => 'año',
+        'display_order'                    => 'posición',
+        'category_id'              => 'valor categoria',
+        'tags'                     => 'valor etiqueta',
+        'images'                   => 'imagen',
     ],
 ];

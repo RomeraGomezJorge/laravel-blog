@@ -213,5 +213,10 @@ return [
         'updated_at'               => 'updated at',
         'username'                 => 'username',
         'year'                     => 'year',
+        'display_order'            => 'order',
+        'category_id'              => 'category',
+        'tags'                     => 'tag',
+        'images'                   => 'image',
+
     ],
 ];
