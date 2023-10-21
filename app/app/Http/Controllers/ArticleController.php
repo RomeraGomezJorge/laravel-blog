@@ -107,6 +107,7 @@ class ArticleController extends Controller
     public function destroy(Article $article): RedirectResponse
     {
         DB::transaction(function () use ($article) {
+            Storage::deleteDirectory('public/article/'.$article->id);
             $article->tags()->detach();
             $article->delete();
         });
@@ -138,7 +139,9 @@ class ArticleController extends Controller
         ];
     }
 
-
+    /**
+     * Upload images related to an article and return their URLs.
+     */
     private function uploadImages(Request $request, Article $article): array
     {
         $images = [];
