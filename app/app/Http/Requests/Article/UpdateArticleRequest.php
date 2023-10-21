@@ -41,10 +41,12 @@ class UpdateArticleRequest extends FormRequest
             ],
             'images'      => [
                 'array',
-                'mimes:jpg,png,jpeg',
-                'max:1024',
-            ]
-
+                'each' => [
+                    'image',
+                    'mimes:jpg,png,jpeg',
+                    'max:1024',
+                ],
+            ],
         ];
 
     }
