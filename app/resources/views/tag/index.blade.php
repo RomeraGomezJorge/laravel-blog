@@ -9,16 +9,16 @@
     </x-slot>
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
         <x-alerts.success/>
-        <form method="get" class="flex items-center">
-            <label for="simple-search" class="sr-only">{{ __('Search')}}</label>
-            <div class="relative w-full">
+        <form method="get" class="flex items-end space-x-2">
+            <div>
+                <x-form.label>{{__('Name')}}</x-form.label>
                 <x-form.input
                     id="name"
                     name="name"
                     type="text"
                     value="{{ Request::get('name') }}"
-                    class="block w-full p-2.5"
-                    autocomplete="name"
+                    class="mr-2 mb-2"
+                    placeholder="{{__('Filter by name')}}"
                 />
             </div>
             <x-buttons.search/>
@@ -49,7 +49,7 @@
                             <td class="px-6 py-4">
                                 {{$tag->name}}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 w-48">
                                 <x-buttons.list.edit :href="route('tags.edit',$tag->id)"/>
                                 <x-buttons.list.delete
                                     data-modal-toggle="confirmDelete{{ $tag->id }}"

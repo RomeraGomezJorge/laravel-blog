@@ -106,7 +106,7 @@
                             {{$article->tags->pluck('name')->implode(', ') }}
                         </td>
 
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 w-48">
                             <x-buttons.list.edit :href="route('articles.edit',$article->id)"/>
                             <x-buttons.list.delete
                                 data-modal-toggle="confirmDelete{{ $article->id }}"
