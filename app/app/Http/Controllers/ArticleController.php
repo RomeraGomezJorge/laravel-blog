@@ -39,6 +39,7 @@ class ArticleController extends Controller
             ->when($request->filled('tag_id'), function (Builder $q) use ($request) {
                 $q->whereRelation('tags', 'tag_id', $request->input('tag_id'));
             })
+            ->orderByDesc('articles.created_at')
             ->paginate(10);
 
         $data             = $this->getRelatedData();
@@ -135,7 +136,7 @@ class ArticleController extends Controller
     {
         return [
             'categories' => Category::all(['id', 'name'])->sortBy('name'),
-            'tags'       => Tag::all(['id', 'name'])->sortByDesc('name'),
+            'tags'       => Tag::all(['id', 'name'])->sortBy('name'),
         ];
     }
 

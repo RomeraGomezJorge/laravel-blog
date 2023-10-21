@@ -22,6 +22,7 @@ class TagController extends Controller
             ->when($request->filled('name'), function ($q) use ($request) {
                 return $q->where('name', 'like', '%' . $request->input('name') . '%');
             })
+            ->orderByDesc('created_at')
             ->paginate(10);
 
         return view('tag.index', compact('tags'));
@@ -43,7 +44,6 @@ class TagController extends Controller
         Tag::create($request->validated());
         return  $this->redirect_success_store('tags.index');
     }
-
 
     /**
      * Show the form for editing the specified resource.

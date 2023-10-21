@@ -6,8 +6,8 @@ use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -20,6 +20,7 @@ class CategoryController extends Controller
             ->when($request->filled('name'), function ($q) use ($request) {
                 return $q->where('name', 'like', '%' . $request->input('name') . '%');
             })
+            ->orderByDesc('created_at')
             ->paginate(10);
 
         return view('category.index', compact('categories'));
