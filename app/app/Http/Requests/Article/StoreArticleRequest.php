@@ -35,11 +35,15 @@ class StoreArticleRequest extends FormRequest
                 'required',
                 'exists:categories,id',
             ],
-            'tags' =>[
+            'tags'        => [
                 'array',
                 'exists:tags,id',
+            ],
+            'images'    => [
+                'array',
+                'mimes:jpg,png,jpeg',
+                'max:1024',
             ]
-
         ];
     }
 }

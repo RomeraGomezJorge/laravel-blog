@@ -66,7 +66,7 @@
 
         <x-form.labeled-select
             :label="__('Tags')"
-            :hasErrors="$errors->get('category_id')"
+            :hasErrors="$errors->get('tags')"
             id="tags"
             name="tags[]"
             multiple
