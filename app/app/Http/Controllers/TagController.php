@@ -25,7 +25,7 @@ class TagController extends Controller
             ->orderByDesc('created_at')
             ->paginate(10);
 
-        return view('tag.index', compact('tags'));
+        return view('backoffice.tag.index', compact('tags'));
     }
 
     /**
@@ -33,7 +33,7 @@ class TagController extends Controller
      */
     public function create(): View
     {
-        return view('tag.create');
+        return view('backoffice.tag.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag): View
     {
-        return view('tag.edit',compact('tag'));
+        return view('backoffice.tag.edit',compact('tag'));
     }
 
     /**
