@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $category_count = Category::count('id');
         $tag_count = Tag::count('id');
 
-        return view('dashboard', compact('article_count','category_count','tag_count'));
+        return view('backoffice.dashboard', compact('article_count','category_count','tag_count'));
     }
 
 }
