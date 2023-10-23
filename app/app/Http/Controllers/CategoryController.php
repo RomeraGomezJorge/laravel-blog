@@ -23,7 +23,7 @@ class CategoryController extends Controller
             ->orderByDesc('created_at')
             ->paginate(10);
 
-        return view('category.index', compact('categories'));
+        return view('backoffice.category.index', compact('categories'));
     }
 
     /**
@@ -31,7 +31,7 @@ class CategoryController extends Controller
      */
     public function create(): View
     {
-        return view('category.create');
+        return view('backoffice.category.create');
     }
 
     /**
@@ -48,7 +48,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category): View
     {
-        return view('category.edit', compact('category'));
+        return view('backoffice.category.edit', compact('category'));
     }
 
     /**

@@ -7,7 +7,7 @@
         </div>
     </x-slot>
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-        @include('category.partials.handle-category-form',[
+        @include('backoffice.category.partials.handle-category-form',[
             'method' => 'POST',
             'url_action' => route('categories.store'),
            ])
