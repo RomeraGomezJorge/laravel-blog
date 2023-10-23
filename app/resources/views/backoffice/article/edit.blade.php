@@ -8,7 +8,7 @@
     </x-slot>
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
         <x-alerts.success/>
-        @include('article.partials.handle-article-form',[
+        @include('backoffice.article.partials.handle-article-form',[
             'method' => 'PUT',
             'url_action' => route('articles.update',$article),
             'article' => $article,

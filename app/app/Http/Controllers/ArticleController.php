@@ -45,7 +45,7 @@ class ArticleController extends Controller
         $data             = $this->getRelatedData();
         $data['articles'] = $articles;
 
-        return view('article.index', $data);
+        return view('backoffice.article.index', $data);
     }
 
     /**
@@ -54,7 +54,7 @@ class ArticleController extends Controller
     public function create(): View
     {
         $data = $this->getRelatedData();
-        return view('article.create', $data);
+        return view('backoffice.article.create', $data);
     }
 
     /**
@@ -82,7 +82,7 @@ class ArticleController extends Controller
         $data            = $this->getRelatedData();
         $data['article'] = $article;
 
-        return view('article.edit', $data);
+        return view('backoffice.article.edit', $data);
     }
 
     /**

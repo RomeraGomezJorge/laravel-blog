@@ -7,7 +7,7 @@
         </div>
     </x-slot>
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-        @include('article.partials.handle-article-form',[
+        @include('backoffice.article.partials.handle-article-form',[
             'method' => 'POST',
             'url_action' => route('articles.store'),
            ])
