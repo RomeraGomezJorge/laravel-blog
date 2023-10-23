@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TagController;
+use App\Http\Controllers\Backoffice\ArticleController;
+use App\Http\Controllers\Backoffice\CategoryController;
+use App\Http\Controllers\Backoffice\DashboardController;
+use App\Http\Controllers\Backoffice\ProfileController;
+use App\Http\Controllers\Backoffice\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
