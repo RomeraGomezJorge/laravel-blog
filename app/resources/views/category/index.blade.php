@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <h2 class="text-xl font-semibold leading-tight">
-                {{ __('Category') }}
+                {{ __('Categories') }}
             </h2>
             <x-buttons.create :href="route('categories.create')"/>
         </div>
