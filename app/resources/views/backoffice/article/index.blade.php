@@ -28,8 +28,9 @@
                     name="category_id"
                     type="text"
                     class="mr-2 mb-2"
-                    placeholder="{{ __('All categories')}}"
+                    placeholder="{{ __('Select a category')}}"
                 >
+                    <option value=""> {{ __('All categories')}}</option>
                     @forelse($categories as $category)
                         <option
                             @selected( Request::get('category_id') == $category->id )
@@ -49,8 +50,9 @@
                     name="tag_id"
                     type="text"
                     class="mr-2 mb-2"
-                    placeholder="{{ __('All tags')}}"
+                    placeholder="{{ __('Select a tag')}}"
                 >
+                    <option value=""> {{ __('All tags')}}</option>
                     @forelse($tags as $tag)
                         <option
                             @selected( Request::get('tag_id') == $tag->id )
