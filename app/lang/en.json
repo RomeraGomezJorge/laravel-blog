@@ -84,6 +84,7 @@
     "Clear": "Clear",
     "Category": "Category",
     "Categories": "Categories",
+    "Cannot delete, category has articles": "Cannot delete, category has articles",
     "Select a category": "Select a category",
     "All Categories": "All categories",
     "Order": "Order",

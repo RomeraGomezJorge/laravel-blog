@@ -66,6 +66,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category): RedirectResponse
     {
+
+        if ($category->articles->isNotEmpty()) {
+            return $this->redirect_with_error('categories.index',__('Cannot delete, category has articles'));
+        }
+
         $category->delete();
         return $this->redirect_success_delete('categories.index');
     }

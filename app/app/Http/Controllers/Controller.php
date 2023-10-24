@@ -25,4 +25,9 @@ class Controller extends BaseController
     {
         return redirect()->route($route)->with('success', __('Successfully deleted'));
     }
+
+    protected function redirect_with_error(string $route, string $message): RedirectResponse
+    {
+        return redirect()->route($route)->with('error',$message);
+    }
 }
