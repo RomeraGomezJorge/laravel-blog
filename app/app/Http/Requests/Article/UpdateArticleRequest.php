@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Article;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateArticleRequest extends FormRequest
+class UpdateArticleRequest extends BaseArticleRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,32 +21,13 @@ class UpdateArticleRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'title'       => [
-                'required',
-                'max:50',
-                Rule::unique('articles')->ignore($this->article),
-            ],
-            'description' => [
-                'required',
-            ],
-            'category_id' => [
-                'required',
-                'exists:categories,id',
-            ],
-            'tags'        => [
-                'array',
-                'exists:tags,id',
-            ],
-            'images'      => [
-                'array',
-                'each' => [
-                    'image',
-                    'mimes:jpg,png,jpeg',
-                    'max:1024',
-                ],
-            ],
-        ];
-
+        return array_merge(
+            $this->commonRules(),
+            [
+                'title' => [
+                    'required',
+                    'max:50',
+                    Rule::unique('articles')->ignore($this->article)],
+            ]);
     }
 }

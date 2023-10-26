@@ -90,32 +90,27 @@
 
     <div class="space-y-2 increment">
 
-        <x-form.labeled-input
-            :label="__('Upload images')"
-            :hasErrors="$errors->get('images')"
-            name="images[]"
-            type="file"
-            class="block w-full cursor-pointer"
-        />
-        <x-form.error :messages="$errors->get('images')"/>
-
-        <div class="clone hidden">
-            <div class="image-container relative w-full">
-                <x-form.input
-                    :label="__('Upload images')"
-                    :hasErrors="$errors->get('images')"
+        @if(!$errors->get('images.*'))
+            <x-form.labeled-input
+                :label="__('Image')"
+                name="images[]"
+                type="file"
+                class="block w-full cursor-pointer"
+            />
+        @else
+            @foreach($errors->get('images.*') as $message)
+                <x-form.labeled-input
+                    :label="__('Image')"
+                    :hasErrors="$message"
                     name="images[]"
                     type="file"
-                    class="block w-full cursor-pointer"
+                    class="block w-full  mt-2 cursor-pointer"
                 />
-                <button
-                    type="button"
-                    class="remove-image absolute top-0 right-0 p-2.5 z-20 h-full text-sm font-medium text-white bg-red-700 rounded-r-lg border border-red-700 hover:bg-red-800 focus:ring-1 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                >
-                    <x-icons.cancel class="w-4 h-4 remove-image z-0"/>
-                </button>
-            </div>
-        </div>
+                <x-form.error :messages="$message"/>
+            @endforeach
+        @endif
+
+
     </div>
 
     <x-button
@@ -158,6 +153,24 @@
         <x-buttons.save/>
     </div>
 </form>
+<div class="clone hidden">
+    <div class="image-container relative w-full">
+        <x-form.input
+            :label="__('Images')"
+            :hasErrors="$errors->get('images')"
+            name="images[]"
+            type="file"
+            class="block w-full cursor-pointer"
+        />
+        <button
+            type="button"
+            class="remove-image absolute top-0 right-0 p-2.5 z-20 h-full text-sm font-medium text-white bg-red-700 rounded-r-lg border border-red-700 hover:bg-red-800 focus:ring-1 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+        >
+            <x-icons.cancel class="w-4 h-4 remove-image z-0"/>
+        </button>
+    </div>
+</div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
 

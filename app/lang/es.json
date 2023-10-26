@@ -106,6 +106,9 @@
     "Remove image": "Eliminar imagen",
     "Are you sure?": "¿Estas seguro?",
     "image": "imagen",
-    "Show more": "Mostrar más"
+    "Image": "Imagen",
+    "Show more": "Mostrar más",
+    "The image :position must be a file of type: :values." : "El campo imagen :position debe ser un archivo con formato: :values.",
+    "The image :position may not be greater than :max." : "El campo imagen :position no debe ser mayor que :max."
 }
 
