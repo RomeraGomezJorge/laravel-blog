@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class BackofficeCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request): RedirectResponse
     {
         Category::create($request->validated());
-        return $this->redirect_success_store('categories.index');
+        return $this->redirect_success_store('backoffice.categories.index');
     }
 
     /**
@@ -58,7 +58,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category): RedirectResponse
     {
         $category->update($request->validated());
-        return $this->redirect_success_update('categories.index');
+        return $this->redirect_success_update('backoffice.categories.index');
     }
 
     /**
@@ -68,10 +68,10 @@ class CategoryController extends Controller
     {
 
         if ($category->articles->isNotEmpty()) {
-            return $this->redirect_with_error('categories.index',__('Cannot delete, category has articles'));
+            return $this->redirect_with_error('backoffice.categories.index',__('Cannot delete, category has articles'));
         }
 
         $category->delete();
-        return $this->redirect_success_delete('categories.index');
+        return $this->redirect_success_delete('backoffice.categories.index');
     }
 }

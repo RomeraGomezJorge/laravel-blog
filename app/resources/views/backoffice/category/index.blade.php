@@ -4,7 +4,7 @@
             <h2 class="text-xl font-semibold leading-tight">
                 {{ __('Categories') }}
             </h2>
-            <x-buttons.create :href="route('categories.create')"/>
+            <x-buttons.create :href="route('backoffice.categories.create')"/>
         </div>
     </x-slot>
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
@@ -23,7 +23,7 @@
                 />
             </div>
             <x-buttons.search/>
-            <x-buttons.clear-filter :href="route('categories.index')"/>
+            <x-buttons.clear-filter :href="route('backoffice.categories.index')"/>
         </form>
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
@@ -57,13 +57,13 @@
                                 {{$category->display_order}}
                             </td>
                             <td class="px-6 py-4 w-48">
-                                <x-buttons.list.edit :href="route('categories.edit',$category->id)"/>
+                                <x-buttons.list.edit :href="route('backoffice.categories.edit',$category->id)"/>
                                 <x-buttons.list.delete
                                     data-modal-toggle="confirmDelete{{ $category->id }}"
                                 />
                                 <x-modal-delete-confirmation
                                     :id="$category->id"
-                                    :formAction="route('categories.destroy', $category->id)"
+                                    :formAction="route('backoffice.categories.destroy', $category->id)"
                                 />
                             </td>
                         </tr>

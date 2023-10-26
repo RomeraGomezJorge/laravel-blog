@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class BackofficeTagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -43,7 +43,7 @@ class TagController extends Controller
     public function store(StoreTagRequest $request): RedirectResponse
     {
         Tag::create($request->validated());
-        return  $this->redirect_success_store('tags.index');
+        return  $this->redirect_success_store('backoffice.tags.index');
     }
 
     /**
@@ -60,7 +60,7 @@ class TagController extends Controller
     public function update(UpdateTagRequest $request, Tag $tag): RedirectResponse
     {
         $tag->update($request->validated());
-        return $this->redirect_success_update('tags.index');
+        return $this->redirect_success_update('backoffice.tags.index');
     }
 
     /**
@@ -69,6 +69,6 @@ class TagController extends Controller
     public function destroy(Tag $tag): RedirectResponse
     {
         $tag->delete();
-        return $this->redirect_success_delete('tags.index');
+        return $this->redirect_success_delete('backoffice.tags.index');
     }
 }

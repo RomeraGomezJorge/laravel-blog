@@ -16,7 +16,7 @@
 
     <form
         method="post"
-        action="{{ route('profile.update') }}"
+        action="{{ route('backoffice.profile.update') }}"
         class="mt-6 space-y-6"
     >
         @csrf

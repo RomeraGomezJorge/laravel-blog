@@ -9,7 +9,7 @@
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
         @include('backoffice.tag.partials.handle-tag-form',[
             'method' => 'POST',
-            'url_action' => route('tags.store')
+            'url_action' => route('backoffice.tags.store')
         ])
     </div>
 </x-app-layout>

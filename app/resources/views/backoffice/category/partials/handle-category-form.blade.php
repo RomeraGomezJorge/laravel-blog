@@ -52,7 +52,7 @@
     </div>
 
     <div class="flex items-center justify-end gap-4">
-        <x-buttons.cancel-form :href="route('categories.index')"/>
+        <x-buttons.cancel-form :href="route('backoffice.categories.index')"/>
         <x-buttons.save/>
     </div>
 </form>

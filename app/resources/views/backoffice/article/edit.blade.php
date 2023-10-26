@@ -10,7 +10,7 @@
         <x-alerts.success/>
         @include('backoffice.article.partials.handle-article-form',[
             'method' => 'PUT',
-            'url_action' => route('articles.update',$article),
+            'url_action' => route('backoffice.articles.update',$article),
             'article' => $article,
            ])
     </div>

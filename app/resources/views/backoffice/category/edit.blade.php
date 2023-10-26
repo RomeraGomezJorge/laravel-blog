@@ -9,7 +9,7 @@
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
         @include('backoffice.category.partials.handle-category-form',[
             'method' => 'PUT',
-            'url_action' => route('categories.update',$category->id),
+            'url_action' => route('backoffice.categories.update',$category->id),
             'category' => $category,
         ])
     </div>

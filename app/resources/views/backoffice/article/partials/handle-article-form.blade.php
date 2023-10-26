@@ -136,7 +136,7 @@
                     <x-button
                         variant="outline-danger"
                         onclick="return confirm('Are you sure?')"
-                        href="{{ route('articles.remove.image',$image->id) }}"
+                        href="{{ route('backoffice.articles.remove.image',$image->id) }}"
                         class="mt-2"
                     >
                         <x-icons.trash class="w-4 h-4 mr-2"/>
@@ -149,7 +149,7 @@
     @endif
 
     <div class="flex items-center justify-end gap-4">
-        <x-buttons.cancel-form :href="route('articles.index')"/>
+        <x-buttons.cancel-form :href="route('backoffice.articles.index')"/>
         <x-buttons.save/>
     </div>
 </form>

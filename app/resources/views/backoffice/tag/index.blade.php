@@ -4,7 +4,7 @@
             <h2 class="text-xl font-semibold leading-tight">
                 {{ __('Tags') }}
             </h2>
-            <x-buttons.create :href="route('tags.create')"/>
+            <x-buttons.create :href="route('backoffice.tags.create')"/>
         </div>
     </x-slot>
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
@@ -22,7 +22,7 @@
                 />
             </div>
             <x-buttons.search/>
-            <x-buttons.clear-filter :href="route('tags.index')"/>
+            <x-buttons.clear-filter :href="route('backoffice.tags.index')"/>
         </form>
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
@@ -50,13 +50,13 @@
                                 {{$tag->name}}
                             </td>
                             <td class="px-6 py-4 w-48">
-                                <x-buttons.list.edit :href="route('tags.edit',$tag->id)"/>
+                                <x-buttons.list.edit :href="route('backoffice.tags.edit',$tag->id)"/>
                                 <x-buttons.list.delete
                                     data-modal-toggle="confirmDelete{{ $tag->id }}"
                                 />
                                 <x-modal-delete-confirmation
                                     :id="$tag->id"
-                                    :formAction="route('tags.destroy', $tag->id)"
+                                    :formAction="route('backoffice.tags.destroy', $tag->id)"
                                 />
                             </td>
                         </tr>

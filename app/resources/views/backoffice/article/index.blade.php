@@ -4,7 +4,7 @@
             <h2 class="text-xl font-semibold leading-tight">
                 {{ __('Articles') }}
             </h2>
-            <x-buttons.create :href="route('articles.create')"/>
+            <x-buttons.create :href="route('backoffice.articles.create')"/>
         </div>
     </x-slot>
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
@@ -66,7 +66,7 @@
                 </x-form.select>
             </div>
             <x-buttons.search />
-            <x-buttons.clear-filter  :href="route('articles.index')"/>
+            <x-buttons.clear-filter  :href="route('backoffice.articles.index')"/>
         </form>
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
@@ -109,13 +109,13 @@
                         </td>
 
                         <td class="px-6 py-4 w-48">
-                            <x-buttons.list.edit :href="route('articles.edit',$article->id)"/>
+                            <x-buttons.list.edit :href="route('backoffice.articles.edit',$article->id)"/>
                             <x-buttons.list.delete
                                 data-modal-toggle="confirmDelete{{ $article->id }}"
                             />
                             <x-modal-delete-confirmation
                                 :id="$article->id"
-                                :formAction="route('articles.destroy', $article->id)"
+                                :formAction="route('backoffice.articles.destroy', $article->id)"
                             />
                         </td>
                     </tr>

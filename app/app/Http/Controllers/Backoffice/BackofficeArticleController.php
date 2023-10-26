@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class ArticleController extends Controller
+class BackofficeArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -72,7 +72,7 @@ class ArticleController extends Controller
             }
         });
 
-        return $this->redirect_success_store('articles.index');
+        return $this->redirect_success_store('backoffice.articles.index');
     }
 
     /**
@@ -100,7 +100,7 @@ class ArticleController extends Controller
             }
         });
 
-        return $this->redirect_success_update('articles.index');
+        return $this->redirect_success_update('backoffice.articles.index');
     }
 
     /**
@@ -114,7 +114,7 @@ class ArticleController extends Controller
             $article->delete();
         });
 
-        return $this->redirect_success_delete('articles.index');
+        return $this->redirect_success_delete('backoffice.articles.index');
     }
 
     /**
@@ -126,7 +126,7 @@ class ArticleController extends Controller
         $article = $image->article;
         $image->delete();
 
-        return redirect()->route('articles.edit', ['article' => $article])
+        return redirect()->route('backoffice.articles.edit', ['article' => $article])
             ->with('success', __('Successfully deleted'));
     }
 

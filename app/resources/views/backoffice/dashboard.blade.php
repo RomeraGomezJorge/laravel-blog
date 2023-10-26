@@ -23,7 +23,7 @@
                         <div class="text-gray-500 dark:text-gray-400">{{ __('Articles') }}</div>
                     </div>
                 </div>
-                <a href="{{ route('articles.index') }}">
+                <a href="{{ route('backoffice.articles.index') }}">
                     <div class="flex text-xs gap-2 justify-center items-center">
                         <x-icons.plus class="w-4 h-4 text-blue-600 dark:text-white"/>
                         {{ __('Show more') }}
@@ -44,7 +44,7 @@
                         <div class="text-gray-500 dark:text-gray-400">{{ __('Tags') }}</div>
                     </div>
                 </div>
-                <a href="{{ route('tags.index') }}">
+                <a href="{{ route('backoffice.tags.index') }}">
                     <div class="flex text-xs gap-2 justify-center items-center">
                         <x-icons.plus class="w-4 h-4 text-blue-600 dark:text-white"/>
                         {{ __('Show more') }}
@@ -65,7 +65,7 @@
                         <div class="text-gray-500 dark:text-gray-400">{{ __('Categories') }}</div>
                     </div>
                 </div>
-                <a href="{{ route('categories.index') }}">
+                <a href="{{ route('backoffice.categories.index') }}">
                     <div class="flex text-xs gap-2 justify-center items-center">
                         <x-icons.plus class="w-4 h-4 text-blue-600 dark:text-white"/>
                         {{ __('Show more') }}

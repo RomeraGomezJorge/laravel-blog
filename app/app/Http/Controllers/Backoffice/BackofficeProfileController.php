@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-class ProfileController extends Controller
+class BackofficeProfileController extends Controller
 {
     /**
      * Display the user's profile form.
@@ -35,7 +35,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('success', __("Your profile data has been updated successfully."));
+        return Redirect::route('backoffice.profile.edit')->with('success', __("Your profile data has been updated successfully."));
     }
 
     /**

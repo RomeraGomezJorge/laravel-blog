@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Backoffice\ArticleController;
-use App\Http\Controllers\Backoffice\CategoryController;
-use App\Http\Controllers\Backoffice\DashboardController;
-use App\Http\Controllers\Backoffice\ProfileController;
-use App\Http\Controllers\Backoffice\TagController;
+use App\Http\Controllers\Backoffice\BackofficeArticleController;
+use App\Http\Controllers\Backoffice\BackofficeCategoryController;
+use App\Http\Controllers\Backoffice\BackofficeDashboardController;
+use App\Http\Controllers\Backoffice\BackofficeProfileController;
+use App\Http\Controllers\Backoffice\BackofficeTagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,32 +23,17 @@ Route::get('/', function () {
 });
 
 
-Route::group(['middleware' => 'auth','prefix'=>'backoffice'], function () {
+Route::group(['middleware' => 'auth','prefix'=>'backoffice','as' => 'backoffice.'], function () {
 
-    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('tags', TagController::class)->except(['show']);
-    Route::resource('categories', CategoryController::class)->except(['show']);
-    Route::get('/articles/{image}/remove-image', [ArticleController::class,'removeImage'])->name('articles.remove.image');
-    Route::resource('articles', ArticleController::class)->except(['show']);
+    Route::get('/dashboard', [BackofficeDashboardController::class,'index'])->name('dashboard');
+    Route::get('/profile', [BackofficeProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [BackofficeProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [BackofficeProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('tags', BackofficeTagController::class)->except(['show']);
+    Route::resource('categories', BackofficeCategoryController::class)->except(['show']);
+    Route::get('/articles/{image}/remove-image', [BackofficeArticleController::class,'removeImage'])->name('articles.remove.image');
+    Route::resource('articles', BackofficeArticleController::class)->except(['show']);
 });
 
-
-
-// useless routes
-// Just to demo sidebar dropdown links active states.
-Route::get('/buttons/text', function () {
-    return view('buttons-showcase.text');
-})->middleware(['auth'])->name('buttons.text');
-
-Route::get('/buttons/icon', function () {
-    return view('buttons-showcase.icon');
-})->middleware(['auth'])->name('buttons.icon');
-
-Route::get('/buttons/text-icon', function () {
-    return view('buttons-showcase.text-icon');
-})->middleware(['auth'])->name('buttons.text-icon');
 
 require __DIR__ . '/auth.php';

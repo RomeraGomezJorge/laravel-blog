@@ -6,7 +6,7 @@
 
     <x-sidebar.link
         title="Dashboard"
-        href="{{ route('dashboard') }}"
+        href="{{ route('backoffice.dashboard') }}"
         :isActive="request()->routeIs('dashboard')"
     >
         <x-slot name="icon">
@@ -16,7 +16,7 @@
 
     <x-sidebar.link
         title="{{__('Articles')}}"
-        href="{{ route('articles.index') }}"
+        href="{{ route('backoffice.articles.index') }}"
         :isActive="request()->routeIs('articles.index')"
     >
         <x-slot name="icon" class="align-middle">
@@ -26,7 +26,7 @@
 
     <x-sidebar.link
         title="{{__('Tags')}}"
-        href="{{ route('tags.index') }}"
+        href="{{ route('backoffice.tags.index') }}"
         :isActive="request()->routeIs('tags.index')"
     >
         <x-slot name="icon" class="align-middle">
@@ -36,7 +36,7 @@
 
     <x-sidebar.link
         title="{{__('Categories')}}"
-        href="{{ route('categories.index') }}"
+        href="{{ route('backoffice.categories.index') }}"
         :isActive="request()->routeIs('categories.index')"
     >
         <x-slot name="icon" class="align-middle">

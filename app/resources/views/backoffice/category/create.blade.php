@@ -9,7 +9,7 @@
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
         @include('backoffice.category.partials.handle-category-form',[
             'method' => 'POST',
-            'url_action' => route('categories.store'),
+            'url_action' => route('backoffice.categories.store'),
            ])
     </div>
 </x-app-layout>
