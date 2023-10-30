@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,11 @@ class Article extends Model
         'category_id',
     ];
 
+    public function getCreatedAtFormattedAttribute()
+    {
+        return $this->created_at->format('F j, Y');;
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
@@ -31,5 +37,14 @@ class Article extends Model
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function scopeWithFirstImageUrl($query)
+    {
+        return $query->addSelect(['first_image_url' => Image::select('url')
+            ->whereColumn('article_id', 'articles.id')
+            ->oldest()
+            ->take(1)
+        ]);
     }
 }

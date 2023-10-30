@@ -36,6 +36,5 @@ services:
       - ${DOCKER_VITE_PORT}:5173
     volumes:
       - ./app:/var/www/html
-    command: npm run dev
 
 
