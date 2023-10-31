@@ -6,6 +6,7 @@ use App\Http\Controllers\Backoffice\BackofficeDashboardController;
 use App\Http\Controllers\Backoffice\BackofficeProfileController;
 use App\Http\Controllers\Backoffice\BackofficeTagController;
 use App\Http\Controllers\Blog\BlogArticleController;
+use App\Http\Controllers\Blog\BlogTagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['as' => 'blog.'], function () {
     Route::get('/', [BlogArticleController::class, 'index'])->name('articles.index');
     Route::get('/articles/{category}/category', [BlogArticleController::class, 'byCategory'])->name('articles.category');
+    Route::get('/articles/{tag}/tag', [BlogArticleController::class, 'byTag'])->name('articles.tag');
+    Route::get('/tags', BlogTagController::class)->name('tags');
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'backoffice', 'as' => 'backoffice.'], function () {

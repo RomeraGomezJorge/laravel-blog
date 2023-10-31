@@ -42,9 +42,7 @@ getLocale()) }}">
         <x-blog.title-page :title="$title_page"/>
         <x-blog.list-categories :categories="$categories"/>
         <div>
-            <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-3 md:[&amp;> *:first-child]:col-span-2">
                 {{ $slot }}
-            </section>
         </div>
         <x-blog.footer/>
     </main>
