@@ -7,16 +7,15 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
 
 class BlogArticleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): View
+    private const ARTICLE_PER_PAGE = 10;
+
+    private function getArticlesQuery(): Builder
     {
-        $articles = Article::sortable()
-            ->select([
+        return Article::select([
                 'articles.id',
                 'articles.title',
                 'articles.created_at',
@@ -25,33 +24,23 @@ class BlogArticleController extends Controller
             ])
             ->join('categories', 'articles.category_id', '=', 'categories.id')
             ->withFirstImageUrl()
-            ->orderByDesc('articles.created_at')
-            ->paginate(10);
+            ->orderByDesc('articles.created_at');
+    }
 
+    public function index(): View
+    {
+        $articles   = $this->getArticlesQuery()->paginate(self::ARTICLE_PER_PAGE);
         $categories = $this->getCategories();
         $page_title = 'Blog';
 
         return view('blog.article.index', compact('articles', 'categories', 'page_title'));
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function byCategory(Category $category): View
     {
-        $articles = Article::sortable()
-            ->select([
-                'articles.id',
-                'articles.title',
-                'articles.created_at',
-                'articles.description',
-                'categories.name as category_name',
-            ])
-            ->join('categories', 'articles.category_id', '=', 'categories.id')
-            ->withFirstImageUrl()
+        $articles = $this->getArticlesQuery()
             ->whereRelation('category', 'id', $category->id)
-            ->orderByDesc('articles.created_at')
-            ->paginate(10);
+            ->paginate(self::ARTICLE_PER_PAGE);
 
         $categories = $this->getCategories();
         $page_title = $category->name;
@@ -59,24 +48,11 @@ class BlogArticleController extends Controller
         return view('blog.article.index', compact('articles', 'categories', 'page_title'));
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function byTag(Tag $tag): View
     {
-        $articles = Article::sortable()
-            ->select([
-                'articles.id',
-                'articles.title',
-                'articles.created_at',
-                'articles.description',
-                'categories.name as category_name',
-            ])
-            ->join('categories', 'articles.category_id', '=', 'categories.id')
-            ->withFirstImageUrl()
+        $articles = $this->getArticlesQuery()
             ->whereRelation('tags', 'tag_id', $tag->id)
-            ->orderByDesc('articles.created_at')
-            ->paginate(10);
+            ->paginate(self::ARTICLE_PER_PAGE);
 
         $categories = $this->getCategories();
         $page_title = $tag->name;
@@ -84,12 +60,10 @@ class BlogArticleController extends Controller
         return view('blog.article.index', compact('articles', 'categories', 'page_title'));
     }
 
-
     public function getCategories(): mixed
     {
         return Category::select(['id', 'name'])
             ->withCount('articles')
             ->get();
     }
-
 }
