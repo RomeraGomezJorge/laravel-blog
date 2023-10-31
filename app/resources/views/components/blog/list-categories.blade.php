@@ -7,9 +7,9 @@
         {{__('View All')}}
     </a>
     @foreach( $categories as $category  )
-        <a href="/"
+        <a href="{{route('blog.articles.category',$category)}}"
            class="text-gray-600 dark:text-gray-300 pb-2.5 first-letter:uppercase font-medium hover:text-gray-800 border-b-2 border-opacity-0 dark:border-opacity-0 border-black dark:border-white dark:hover:border-white hover:border-opacity-100 transition-colors duration-150 ease-linear">
-            {{$category->name}}
+            {{ $category->name }} ({{ $category->articles_count ?? 0  }})
         </a>
     @endforeach
     <div class="hidden sm:block absolute w-full bottom-0 border-b-2 -z-40 dark:border-gray-600"></div>

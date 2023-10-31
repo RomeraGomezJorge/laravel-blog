@@ -19,8 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/', [BlogArticleController::class, 'index'])->name('articles.index');
+Route::group(['as' => 'blog.'], function () {
+    Route::get('/', [BlogArticleController::class, 'index'])->name('articles.index');
+    Route::get('/articles/{category}/category', [BlogArticleController::class, 'byCategory'])->name('articles.category');
+});
 
 Route::group(['middleware' => 'auth', 'prefix' => 'backoffice', 'as' => 'backoffice.'], function () {
     Route::get('/dashboard', [BackofficeDashboardController::class, 'index'])->name('dashboard');

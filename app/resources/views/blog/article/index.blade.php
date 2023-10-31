@@ -1,6 +1,6 @@
 <x-blog-layout
     :categories="$categories"
-    title_page="Blog"
+    :title_page="$page_title"
 >
         @forelse($articles as $article)
         <x-blog.article-index
