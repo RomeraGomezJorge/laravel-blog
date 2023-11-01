@@ -11,6 +11,7 @@
                 :category_name="$article->category_name"
                 :image_url="asset('storage/article/'.$article->id.'/'.$article->first_image_url)"
                 :created_at="$article->created_at_formatted"
+                :tags="$article->tags"
             />
         @empty
             {{ __('No entries found') }}

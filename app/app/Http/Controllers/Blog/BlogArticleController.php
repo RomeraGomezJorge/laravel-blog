@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class BlogArticleController extends Controller
 {
-    private const ARTICLE_PER_PAGE = 10;
+    private const ARTICLE_PER_PAGE = 12;
 
     private function getArticlesQuery(): Builder
     {
@@ -24,6 +24,7 @@ class BlogArticleController extends Controller
             ])
             ->join('categories', 'articles.category_id', '=', 'categories.id')
             ->withFirstImageUrl()
+            ->with('tags:id,name')
             ->orderByDesc('articles.created_at');
     }
 

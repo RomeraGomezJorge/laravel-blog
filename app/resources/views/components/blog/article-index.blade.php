@@ -4,9 +4,10 @@
     'category_name',
     'image_url',
     'created_at',
+    'tags' => []
 ])
 
-<article class="grid grid-rows-[300px_auto] md:grid-rows-[300px_220px] min-h-full group">
+<article class="grid grid-rows-[300px_auto] md:grid-rows-[300px_220px] min-h-full group mb-5">
     <a class="relative effect overflow-hidden" href="#">
         <img src="{{$image_url}}"
              class="h-full min-w-full object-cover hover:scale-[101%] transition-all duration-200 rounded-[2px]"
@@ -37,9 +38,17 @@
                     {{$title}}
                 </a>
             </div>
-            <p class="overflow-hidden line-clamp-3 text-gray-700 dark:text-white mb-5 font-[400] md:pr-[15%]">
+            <p class="overflow-hidden line-clamp-3 text-gray-700 dark:text-white mb-2 font-[400] md:pr-[15%]">
                 {{$description}}
             </p>
+            <div class="flex justify-left flex-wrap gap-1 mb-5">
+                @foreach( $tags as $tag)
+                    <a href="{{ route('blog.articles.tag',$tag) }}"
+                       class="inline-block bg-gray-200  rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">
+                        #{{ $tag->name }}
+                    </a>
+                @endforeach
+            </div>
         </div>
         <footer class="flex justify-between items-center">
             <a href="/post/astro-copy-4/"
