@@ -24,7 +24,7 @@ class ArticleSeeder extends Seeder
                     ->create(['category_id' => $category->id])
                     ->each(function ($article) use ($tags) {
 
-                        $article->tags()->attach($tags->random(2));
+                        $article->tags()->attach($tags->random(mt_rand(1, 4)));
 
                         $path = storage_path('app/public/article/' . $article->id);
                         if (!is_dir($path)) {
