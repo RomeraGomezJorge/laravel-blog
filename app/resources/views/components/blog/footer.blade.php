@@ -1,4 +1,3 @@
 <footer class="flex justify-center items-center w-full px-16 h-28 border-t-2">
-
-    © 2023 Your Name. All rights reserved.
+    © 2023
 </footer>
