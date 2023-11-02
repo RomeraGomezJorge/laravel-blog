@@ -1,6 +1,6 @@
 @props([
     'categories',
-    'title_page',
+    'page_title',
     'header_title',
     ])
 
@@ -40,7 +40,7 @@ getLocale()) }}">
 <body class="bg-white text-stone-950 dark:bg-[#0a0910] dark:text-white w-full h-full">
     <main class="px-5 sm:mx-auto sm:max-w-2xl sm:px-8 lg:px-0 antialiased md:max-w-6xl grid gap-12 mt-4 overflow-hidden md:overflow-visible">
         <x-blog.header :title="$header_title"/>
-        <x-blog.title-page :title="$title_page"/>
+        <x-blog.title-page :title="$page_title"/>
         <x-blog.list-categories :categories="$categories"/>
         <div>
                 {{ $slot }}

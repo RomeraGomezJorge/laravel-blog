@@ -1,6 +1,6 @@
 <x-blog-layout
     :categories="$categories"
-    :title_page="$page_title"
+    :page_title="$page_title"
     :header_title="$header_title"
 >
 
