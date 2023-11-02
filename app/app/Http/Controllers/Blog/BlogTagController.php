@@ -21,10 +21,11 @@ class BlogTagController extends Controller
             ->withCount('articles')
             ->paginate(50);
 
-        $categories = $this->getCategories();
-        $page_title = 'Tags';
+        $categories   = $this->getCategories();
+        $page_title   = __('Tags');
+        $header_title = __('Tags list');
 
-        return view('blog.tag.index', compact('tags', 'categories', 'page_title'));
+        return view('blog.tag.index', compact('tags', 'categories', 'page_title','header_title'));
     }
 
     public function getCategories(): mixed

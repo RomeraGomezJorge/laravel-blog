@@ -30,11 +30,12 @@ class BlogArticleController extends Controller
 
     public function index(): View
     {
-        $articles   = $this->getArticlesQuery()->paginate(self::ARTICLE_PER_PAGE);
-        $categories = $this->getCategories();
-        $page_title = 'Blog';
+        $articles     = $this->getArticlesQuery()->paginate(self::ARTICLE_PER_PAGE);
+        $categories   = $this->getCategories();
+        $page_title   = 'Blog';
+        $header_title = __('Home');
 
-        return view('blog.article.index', compact('articles', 'categories', 'page_title'));
+        return view('blog.article.index', compact('articles', 'categories', 'page_title', 'header_title'));
     }
 
     public function byCategory(Category $category): View
@@ -43,10 +44,11 @@ class BlogArticleController extends Controller
             ->whereRelation('category', 'id', $category->id)
             ->paginate(self::ARTICLE_PER_PAGE);
 
-        $categories = $this->getCategories();
-        $page_title = $category->name;
+        $categories   = $this->getCategories();
+        $page_title   = $category->name;
+        $header_title = __('Category');
 
-        return view('blog.article.index', compact('articles', 'categories', 'page_title'));
+        return view('blog.article.index', compact('articles', 'categories', 'page_title', 'header_title'));
     }
 
     public function byTag(Tag $tag): View
@@ -55,10 +57,11 @@ class BlogArticleController extends Controller
             ->whereRelation('tags', 'tag_id', $tag->id)
             ->paginate(self::ARTICLE_PER_PAGE);
 
-        $categories = $this->getCategories();
-        $page_title = $tag->name;
+        $categories   = $this->getCategories();
+        $page_title   = $tag->name;
+        $header_title = __('Tag');
 
-        return view('blog.article.index', compact('articles', 'categories', 'page_title'));
+        return view('blog.article.index', compact('articles', 'categories', 'page_title', 'header_title'));
     }
 
     public function getCategories(): mixed

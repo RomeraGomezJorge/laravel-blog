@@ -110,6 +110,9 @@
     "Image": "Imagen",
     "Show more": "Mostrar más",
     "The image :position must be a file of type: :values." : "El campo imagen :position debe ser un archivo con formato: :values.",
-    "The image :position may not be greater than :max." : "El campo imagen :position no debe ser mayor que :max."
+    "The image :position may not be greater than :max." : "El campo imagen :position no debe ser mayor que :max.",
+    "View All" : "Ver todas",
+    "Home": "Inicio",
+    "Tags list" : "Lista de etiquetas"
 }
 

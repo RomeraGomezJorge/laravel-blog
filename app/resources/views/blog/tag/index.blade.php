@@ -1,6 +1,7 @@
 <x-blog-layout
     :categories="$categories"
     :title_page="$page_title"
+    :header_title="$header_title"
 >
     <div class="flex justify-center flex-wrap gap-4">
         @forelse($tags as $tag)
