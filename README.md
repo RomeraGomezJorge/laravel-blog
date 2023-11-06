@@ -1,87 +1,104 @@
-# Laravel Roadmap: Beginner Level Challenge
+# Blogger Web App
 
-This is a task for the [Beginner Level of the Laravel Roadmap](https://github.com/LaravelDaily/Laravel-Roadmap-Learning-Path#beginner-level), with the goal to implement as many of its topics as possible.
-
-This repository is intentionally empty, with only a Readme file. Your task if to submit a Pull Request with your version of implementing the task, and your PR may be reviewed by someone on our team, or other volunteers.
-
-## The Task: Simple Personal Blog
-
-You need to create a personal blog with just three pages:
-
-- Homepage: List of articles
-- Article page
-- Some static text page like "About me"
+![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 
 
-Also, there should be a Login mechanism (but no Register) for the author to write articles:
+## Project Overview
 
-- Manage (meaning, create/update/delete) categories
-- Manage tags
-- Manage articles 
-- For Auth Starter Kit, use [Laravel Breeze](https://github.com/laravel/breeze) (Tailwind) or [Laravel UI](https://github.com/laravel/ui) (Bootstrap) - that starter kit will have some design, which is enough: the design is irrelevant for accomplishing the task
+This project is a Blogger Web Application designed for a single registered user who plays the dual role of both blogger and administrator. The primary purpose of this application is to facilitate the registered user in creating and publishing articles on their personal blog. Public users can access the application to read the published articles and navigate the homepage to select the articles they wish to read.
 
+## Features
 
-**DB Structure:**
+- <b>User Authentication:</b> The application allows a single user to log in, and manage their account.
 
-- Article has title (required), full text (required) and image to upload (optional)
-- Article may have only one category, but may have multiple tags
+- <b>Article Management:</b> The authenticated user, acting as both blogger and administrator, has full control over article management. They can create, edit, filter, sort and delete articles, ensuring fresh and up-to-date content on their blog.
 
+- <b>Category and Tag Management:</b> The user can also manage categories and tags for their articles, simplifying content organization and enhancing visitor's content search experience
 
------
+## Screenshots
+### Blog
+![Block Section](https://i.imgur.com/LZ7IoeV.png)
 
-## Features to implement
+### Backoffice
 
-Here's the [list of Roadmap features](https://github.com/LaravelDaily/Laravel-Roadmap-Learning-Path#beginner-level) you need to try to implement in your code:
+![Backoffice Section](https://i.imgur.com/6K7Tixx.png)<br><br>
+![Backoffice Section](https://i.imgur.com/ezUrgkH.png)<br><br>
+![Backoffice Section](https://i.imgur.com/XRKmUfZ.png)
 
-**Routing and Controllers: Basics**	
+## Access Credentials
 
-- Callback Functions and Route::view()
-- Routing to a Single Controller Method	
-- Route Parameters
-- Route Naming	
-- Route Groups	
+### Backoffice
 
+- **Username**: admin@example.com
+- **Password**: password
 
-**Blade Basics**
+# Instructions to set up the project
 
-- Displaying Variables in Blade
-- Blade If-Else and Loop Structures
-- Blade Loops
-- Layout: @include, @extends, @section, @yield
-- Blade Components
+To get the project up and running after cloning the repository, follow these steps:
 
 
-**Auth Basics**	
+1. Open a terminal in the root directory of the project and rename **.env.example** file to **.env** 
+    ```
+    mv .env.example .env
+    ```
+2. Download and create the container images by executing the following command to start the services using Docker Compose:
+    ```
+    docker-compose up
+    ```
+3. Once the previous command finishes execution, open another terminal in the root directory of the project and check the status of all services by using the following command:
+    ```
+    docker-compose ps
+    ```
+   If everything is correct, you should see output similar to the following (where "UP" indicates that the service is running):
+    ```
+    blog_app_1        docker-php-entrypoint Up 0.0.0.0:80->80/tcp,:::
+    blog_db_1         docker-entrypoint.sh  Up 0.0.0.0:3304->3306/tcp
+    blog_phpmyadmin_1 docker-entrypoint.sh  Up 0.0.0.0:9004->80/tcp,:
+    ```
+4. Access the **app** container (in the example, it is named **blog_app_1**)  using the following command to enter the interactive terminal of the container:
+     ```
+     docker exec -it blog_app_1 /bin/bash
+    ```
 
-- Default Auth Model and Access its Fields from Anywhere
-- Check Auth in Controller / Blade
-- Auth Middleware
+5. Rename **.env.example** file to **.env**
+    ```
+    mv .env.example .env
+    ```
+    
+6. Install Laravel and Node.js dependencies using the following commands:
+    ```
+    composer install && npm install
+    ```
+   
+7. Connect to MySQL using the following command:
+    ```
+    mysql -h db -P 3306 -u root -p123456
+    ```
 
+8. Create the database by executing the following command in the MySQL client within the container:
+    ```
+    CREATE DATABASE blog;
+    ```
+   
+9. Exit the MySQL client with the command:
+    ```
+    exit
+    ```
 
-**Database Basics**	
+10. Run Laravel migrations using the following command to set up the database structure:
+     ```
+     php artisan migrate:fresh --seed
+     ```
+   
+11. Finally, to start the development server, run the following command:
+     ```
+     npm run dev
+     ```
+   
 
-- Database Migrations
-- Basic Eloquent Model and MVC: Controller -> Model -> View
-- Eloquent Relationships: belongsTo / hasMany / belongsToMany
-- Eager Loading and N+1 Query Problem
+Now, the project should be configured and working correctly. Enjoy working on it!
 
-
-**Full Simple CRUD**	
-
-- Route Resource and Resourceful Controllers
-- Forms, Validation and Form Requests
-- File Uploads and Storage Folder Basics
-- Table Pagination
-
-
------ 
-
-## Example Solutions
-
-If you need help, or you want to compare your version with our simple version, here are two public repositories with the solution:
-
-- [Laravel Roadmap Beginner: Breeze](https://github.com/LaravelDaily/Laravel-Roadmap-Beginner-Roadmap-Breeze)
-- [Laravel Roadmap Beginner: UI](https://github.com/LaravelDaily/Laravel-Roadmap-Beginner-Blog-UI)
-
-
-**Notice**: please look at those repositories only AFTER you've accomplished the task yourself, or if you're confident about your Laravel beginner skills and you think you don't need to practice this task.

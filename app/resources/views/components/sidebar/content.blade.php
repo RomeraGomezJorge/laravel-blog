@@ -7,7 +7,7 @@
     <x-sidebar.link
         title="Dashboard"
         href="{{ route('backoffice.dashboard') }}"
-        :isActive="request()->routeIs('dashboard')"
+        :isActive="request()->routeIs('backoffice.dashboard')"
     >
         <x-slot name="icon">
             <x-icons.dashboard class="flex-shrink-0 w-4 h-4" aria-hidden="true" />
@@ -17,7 +17,7 @@
     <x-sidebar.link
         title="{{__('Articles')}}"
         href="{{ route('backoffice.articles.index') }}"
-        :isActive="request()->routeIs('articles.index')"
+        :isActive="request()->routeIs('backoffice.articles.*')"
     >
         <x-slot name="icon" class="align-middle">
             <x-icons.article class="flex-shrink-0 w-4 h-4" aria-hidden="true" />
@@ -27,7 +27,7 @@
     <x-sidebar.link
         title="{{__('Tags')}}"
         href="{{ route('backoffice.tags.index') }}"
-        :isActive="request()->routeIs('tags.index')"
+        :isActive="request()->routeIs('backoffice.tags.*')"
     >
         <x-slot name="icon" class="align-middle">
             <x-icons.tag class="flex-shrink-0 w-4 h-4" aria-hidden="true" />
@@ -37,7 +37,7 @@
     <x-sidebar.link
         title="{{__('Categories')}}"
         href="{{ route('backoffice.categories.index') }}"
-        :isActive="request()->routeIs('categories.index')"
+        :isActive="request()->routeIs('backoffice.categories.*')"
     >
         <x-slot name="icon" class="align-middle">
             <x-icons.category class="flex-shrink-0 w-4 h-4" aria-hidden="true" />

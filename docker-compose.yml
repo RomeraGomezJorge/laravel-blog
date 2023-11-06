@@ -14,7 +14,7 @@ services:
     ports:
       - ${DOCKER_MYSQL_PORT}:3306
 
-  laravel_roadmap_beginner_challenge_phpmyadmin:
+  blog_phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
       PMA_ARBITRARY: 1
@@ -26,11 +26,11 @@ services:
     links:
       - db
 
-  laravel_roadmap_beginner_challenge_app:
+  blog_app:
     build:
       context: .
       dockerfile: .docker/Dockerfile
-    image: 'laravel_roadmap_beginner_challenge'
+    image: 'blog'
     ports:
       - ${DOCKER_APACHE_PORT_HTTP}:80
       - ${DOCKER_VITE_PORT}:5173
