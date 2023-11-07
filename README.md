@@ -25,13 +25,25 @@ This project is a Blogger Web Application designed for a single registered user 
 
 ## Screenshots
 ### Blog
-![Block Section](https://i.imgur.com/LZ7IoeV.png)
+<p align="center">
+  <img src="https://i.imgur.com/LZ7IoeV.png" alt="Display all articles with their information">
+  Blog Home: Display all articles with their information
+</p>
+
 
 ### Backoffice
-
-![Backoffice Section](https://i.imgur.com/6K7Tixx.png)<br><br>
-![Backoffice Section](https://i.imgur.com/ezUrgkH.png)<br><br>
-![Backoffice Section](https://i.imgur.com/XRKmUfZ.png)
+<p align="center">
+  <img src="https://i.imgur.com/6K7Tixx.png/6K7Tixx.png" alt="Backoffice Dashboard: Displays statistics and key links">
+  Backoffice Dashboard: Displays statistics and key links
+</p>
+<p align="center">
+  <img src="https://i.imgur.com/ezUrgkH.png" alt="Descripción de la imagen 1">
+  Backoffice Article Management: Filter, Sort, Edit, and Create
+</p>
+<p align="center">
+  <img src="https://i.imgur.com/XRKmUfZ.png" alt="Descripción de la imagen 1">
+  Backoffice Article Edit: Update date and manage images
+</p>
 
 ## Access Credentials
 
@@ -61,9 +73,9 @@ To get the project up and running after cloning the repository, follow these ste
     ```
 4. Download and create the container images by executing the following command to start the services using Docker Compose:
     ```
-    docker-compose up
+    docker-compose up -d
     ```
-5. Once the previous command finishes execution, open another terminal in the root directory of the project and check the status of all services by using the following command:
+5. Once the previous command finishes execution, check the status of all services by using the following command:
     ```
     docker-compose ps
     ```
@@ -112,12 +124,74 @@ To get the project up and running after cloning the repository, follow these ste
      ```
      php artisan migrate:fresh --seed
      ```
+
+14. Create a symbolic link from public/storage to storage/app/public:
+     ```
+     php artisan storage:link
+     ```
+
+15. Configure the permissions of the storage folder to ensure that Laravel can function without issues:
+     ```
+     chgrp -R www-data storage bootstrap/cache && chmod -R ug+rwx storage bootstrap/
+     ```
    
-14. Finally, to start the development server, run the following command:
+16. Finally, to start the development server, run the following command:
      ```
      npm run dev
      ```
    
 
 Now, the project should be configured and working correctly. Enjoy working on it!
+
+## After install
+- To initiate the project in the upcoming instances, navigate to the project's root directory, and simply execute the following command:
+    ```
+    docker-compose start && docker exec -it blog_app_1  npm run dev
+    ```
+    <b>NOTE:</b> Replace "blog_app_1" with your blog_app container name, which you can obtain after running "docker-compose ps"
+
+- To stop the project, you can use:
+  ```
+  docker-compose stop
+    ``` 
+
+## Topics Covered
+
+
+This project serves as a demonstration of various Laravel topics and features, including:
+
+### Routing and Controllers: Basics
+- Routing to a Single Controller Method
+- Route Parameters
+- Route Naming
+- Route Groups
+
+### Blade Basics
+- Displaying Variables in Blade
+- Blade If-Else and Loop Structures
+- Blade Loops
+- Layout: @include, @extends
+- Blade Components
+
+### Auth Basics
+- laravel/sanctum
+- Default Auth Model and Access its Fields from Anywhere
+- Check Auth in Controller / Blade
+- Auth Middleware
+
+### Database Basics
+- Database Migrations
+- Eloquent Relationships: belongsTo / hasMany / belongsToMany
+- Eager Loading and N+1 Query Problem
+- Transactions
+
+### Full Simple CRUD
+- Route Resource and Resourceful Controllers
+- Forms, Validation and Form Requests
+- File Uploads and Storage Folder Basics
+- Table Pagination
+
+By exploring this project, you'll gain hands-on experience with these fundamental Laravel concepts and techniques.
+
+
 
