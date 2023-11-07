@@ -73,7 +73,7 @@ To get the project up and running after cloning the repository, follow these ste
     blog_db_1         docker-entrypoint.sh  Up 0.0.0.0:3304->3306/tcp
     blog_phpmyadmin_1 docker-entrypoint.sh  Up 0.0.0.0:9004->80/tcp,:
     ```
-6. Access the **app** container (in the example, it is named **blog_app_1**)  using the following command to enter the interactive terminal of the container:
+6. Access the **blog_app** container (in the example, it is named **blog_app_1**)  using the following command to enter the interactive terminal of the container:
      ```
      docker exec -it blog_app_1 /bin/bash
     ```
@@ -90,7 +90,9 @@ To get the project up and running after cloning the repository, follow these ste
    
 9. Connect to MySQL using the following command:
     ```
-    mysql -h db -P 3306 -u root -p123456
+    mysql -h db -P 3306 -u root -proot
+   
+   
     ```
 
 10. Create the database by executing the following command in the MySQL client within the container:
