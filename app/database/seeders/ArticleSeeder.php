@@ -28,7 +28,7 @@ class ArticleSeeder extends Seeder
 
                         $path = storage_path('app/public/article/' . $article->id);
                         if (!is_dir($path)) {
-                            mkdir($path);
+                            mkdir($path, 0755, true);
                         }
 
                         $article->images()->createMany([

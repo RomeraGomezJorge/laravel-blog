@@ -91,8 +91,6 @@ To get the project up and running after cloning the repository, follow these ste
 9. Connect to MySQL using the following command:
     ```
     mysql -h db -P 3306 -u root -proot
-   
-   
     ```
 
 10. Create the database by executing the following command in the MySQL client within the container:
@@ -105,12 +103,17 @@ To get the project up and running after cloning the repository, follow these ste
     exit
     ```
 
-12. Run Laravel migrations using the following command to set up the database structure:
+12. Generate Application Key in Laravel with the command:
+     ```
+    php artisan key:generate         
+     ```
+
+13. Run Laravel migrations using the following command to set up the database structure:
      ```
      php artisan migrate:fresh --seed
      ```
    
-13. Finally, to start the development server, run the following command:
+14. Finally, to start the development server, run the following command:
      ```
      npm run dev
      ```
